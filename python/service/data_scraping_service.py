@@ -5,7 +5,7 @@ from requests import get
 
 class DataScrapingService:
     @staticmethod
-    def scrape(month: str, year: int) -> EventResponse:
+    def scrape_games(month: str, year: int) -> EventResponse:
         url = f"https://www.basketball-reference.com/leagues/NBA_{year}_games-{month}.html"
         page = get(url)
 
