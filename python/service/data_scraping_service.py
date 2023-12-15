@@ -6,6 +6,14 @@ from requests import get
 class DataScrapingService:
     @staticmethod
     def scrape_games(month: str, year: int) -> EventResponse:
+        """
+        Scrape games for a given month & year combination.
+
+        :param month: The month within the season.
+        :param year: The year the games took place in.
+        :return: Scraped games.
+        """
+
         url = f"https://www.basketball-reference.com/leagues/NBA_{year}_games-{month}.html"
         page = get(url)
 
