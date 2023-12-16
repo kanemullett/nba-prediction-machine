@@ -40,6 +40,13 @@ class DataScrapingService:
         )
 
     def scrape_stats(self, team: str) -> EventResponse:
+        """
+        Scrape a team's stats for every season in the NBA's three point era (1979-80 onwards).
+
+        :param team: The team's three letter abbreviation.
+        :return: Scraped stats.
+        """
+
         url = f"https://www.basketball-reference.com/teams/{team.upper()}/stats_per_game_totals.html"
 
         table_rows = self.__get_table_rows(url)
@@ -68,7 +75,7 @@ class DataScrapingService:
                     field_goal_percentage=float("0" + row[14]),
                     three_pointers_per_game=float(row[15]),
                     three_point_attempts_per_game=float(row[16]),
-                    three_point_percentage=float("0"+ row[17]),
+                    three_point_percentage=float("0" + row[17]),
                     two_pointers_per_game=float(row[18]),
                     two_point_attempts_per_game=float(row[19]),
                     two_point_percentage=float("0" + row[20]),
