@@ -17,3 +17,14 @@ async def scrape_games(month: str, year: int) -> EventResponse:
     :return: Scraped games.
     """
     return data_scraping_service.scrape_games(month, year)
+
+
+@scrape.get("/scrape/stats")
+async def scrape_stats(team: str) -> EventResponse:
+    """
+    Scrape a team's stats for every season in the NBA's three point era (1979-80 onwards).
+
+    :param team: The team's three letter abbreviation.
+    :return: Scraped stats.
+    """
+    return data_scraping_service.scrape_stats(team)
