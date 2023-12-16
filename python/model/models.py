@@ -1,3 +1,4 @@
+from enum import Enum
 from pydantic import BaseModel
 from typing import Any
 
@@ -14,15 +15,20 @@ class GameEvent(BaseModel):
     venue: str
 
 
+class StatsEventType(Enum):
+    TEAM = "TEAM"
+    OPPONENT = "OPPONENT"
+
+
 class StatsEvent(BaseModel):
     team: str
     season: str
     wins: int
     losses: int
     division_position: int
-    average_age: float
-    average_height: str
-    average_weight: int
+    average_age: float | None
+    average_height: str | None
+    average_weight: int | None
     games_played: int
     minutes_per_game: float
     field_goals_per_game: float
