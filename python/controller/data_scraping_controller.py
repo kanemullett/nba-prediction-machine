@@ -1,13 +1,16 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 from model.models import EventResponse
 from service.data_scraping_service import DataScrapingService
 
 
-scrape = FastAPI()
+router = APIRouter(
+    prefix="/scrape",
+    tags=["data-scraping-controller"]
+)
 data_scraping_service = DataScrapingService()
 
 
-@scrape.get("/scrape/games")
+@router.get("/games")
 async def scrape_games(month: str, year: int) -> EventResponse:
     """
     Scrape games for a given month & year combination.
@@ -19,7 +22,7 @@ async def scrape_games(month: str, year: int) -> EventResponse:
     return data_scraping_service.scrape_games(month, year)
 
 
-@scrape.get("/scrape/stats/team")
+@router.get("/stats/team")
 async def scrape_team_stats(team: str) -> EventResponse:
     """
     Scrape a team's stats for every season in the NBA's three point era (1979-80 onwards).
@@ -30,7 +33,7 @@ async def scrape_team_stats(team: str) -> EventResponse:
     return data_scraping_service.scrape_team_stats(team)
 
 
-@scrape.get("/scrape/stats/opponent")
+@router.get("/stats/opponent")
 async def scrape_opponent_stats(team: str) -> EventResponse:
     """
     Scrape a team's opponent stats for every season in the NBA's three point era (1979-80 onwards).
